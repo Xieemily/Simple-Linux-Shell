@@ -1,0 +1,116 @@
+Nonterminals useless in grammar
+
+    cmd_and_args
+    pipe_list
+    io_modifier
+    io_modifier_list
+    background_optional
+    command_line
+    command_list
+    goal
+
+
+Terminals unused in grammar
+
+    NOTOKEN
+    GREAT
+    NEWLINE
+    GREATGREAT
+    PIPE
+    AMPERSAND
+    GREATAMPERSAND
+    GREATGREATAMPERSAND
+    LESS
+
+
+Rules useless in grammar
+
+    3 cmd_and_args: WORD arg_list
+
+    4 pipe_list: pipe_list PIPE cmd_and_args
+    5          | cmd_and_args
+
+    6 io_modifier: GREATGREAT WORD
+    7            | GREAT WORD
+    8            | GREATGREATAMPERSAND WORD
+    9            | GREATAMPERSAND WORD
+   10            | LESS WORD
+
+   11 io_modifier_list: io_modifier_list io_modifier
+   12                 | %empty
+
+   13 background_optional: AMPERSAND
+   14                    | %empty
+
+   15 command_line: pipe_list io_modifier_list background_optional NEWLINE
+   16             | NEWLINE
+   17             | error NEWLINE
+
+   18 command_list: command_list command_line
+
+   19 goal: command_list
+
+
+Grammar
+
+    0 $accept: arg_list $end
+
+    1 arg_list: arg_list WORD
+    2         | %empty
+
+
+Terminals, with rules where they appear
+
+    $end (0) 0
+    error (256)
+    WORD <string_val> (258) 1
+    NOTOKEN (259)
+    GREAT (260)
+    NEWLINE (261)
+    GREATGREAT (262)
+    PIPE (263)
+    AMPERSAND (264)
+    GREATAMPERSAND (265)
+    GREATGREATAMPERSAND (266)
+    LESS (267)
+
+
+Nonterminals, with rules where they appear
+
+    $accept (13)
+        on left: 0
+    arg_list (14)
+        on left: 1 2
+        on right: 0 1
+
+
+State 0
+
+    0 $accept: . arg_list $end
+
+    $default  reduce using rule 2 (arg_list)
+
+    arg_list  go to state 1
+
+
+State 1
+
+    0 $accept: arg_list . $end
+    1 arg_list: arg_list . WORD
+
+    $end  shift, and go to state 2
+    WORD  shift, and go to state 3
+
+
+State 2
+
+    0 $accept: arg_list $end .
+
+    $default  accept
+
+
+State 3
+
+    1 arg_list: arg_list WORD .
+
+    $default  reduce using rule 1 (arg_list)
