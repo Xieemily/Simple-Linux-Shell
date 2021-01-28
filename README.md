@@ -4,11 +4,11 @@ A simple shell program for practice.
 
 **RUN**: 
     `$chmod +x shell`
-    `$./shell'`
+    `$./shell`
 
 
 
-Grammar analysis using flex and bison
+Grammar analysis using flex and bison, `shell.y` and `shell.l`
 
 
 
@@ -21,4 +21,4 @@ functionalities:
 
 
 
-![](\.media\image.png)
+![](.media\image.png)
