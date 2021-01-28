@@ -3,8 +3,8 @@ A simple shell program for practice.
 
 
 **RUN**: 
-    `\$chmod +x shell`
-    `\$./shell'`
+    `$chmod +x shell`
+    `$./shell'`
 
 
 
