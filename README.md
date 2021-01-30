@@ -21,4 +21,4 @@ functionalities:
 
 
 
-![](.media\image.png)
+![](.media/image.png)
